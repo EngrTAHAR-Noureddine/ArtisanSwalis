@@ -35,9 +35,6 @@ class MyApp extends StatelessWidget {
         splashColor: oceanBlue500Color,
 
 
-
-
-
         primaryColor:oceanBlue500Color,
         primaryColorLight: oceanBlue700Color,
         secondaryHeaderColor: oceanAccentColor,
