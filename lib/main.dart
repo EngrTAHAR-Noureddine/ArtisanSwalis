@@ -5,10 +5,19 @@ import 'package:artisanswalis/views/Login.dart';
 import 'package:artisanswalis/views/NewProduct.dart';
 import 'package:artisanswalis/views/Home.dart';
 import 'package:artisanswalis/views/SignUp.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+Future<void> _messageHandler(RemoteMessage message) async {
+  print('background message ${message.notification!.body}');
+
+}
+
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage(_messageHandler);
  runApp(const MyApp());
 
 

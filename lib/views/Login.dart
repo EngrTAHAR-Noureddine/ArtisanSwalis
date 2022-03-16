@@ -3,6 +3,8 @@ import 'package:artisanswalis/Styles/CustomString.dart';
 import 'package:artisanswalis/Styles/CustomShapes.dart';
 import 'package:artisanswalis/Styles/CustomTypology.dart';
 import 'package:artisanswalis/Styles/InputsFields.dart';
+import 'package:artisanswalis/notification/MyFCM.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -13,13 +15,26 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
-/*
-onPressed: ()=>(
-                Navigator.popAndPushNamed(context, '/home')
-            )
-* */
 
 class _LoginState extends State<Login> {
+
+  late FirebaseMessaging messaging;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    messaging = FirebaseMessaging.instance;
+    messaging.getToken().then((value){
+      print(value);
+      MyFCM(customToken:value.toString());
+      messaging.subscribeToTopic("5ySE7UusKLf8sDYHkuyX");
+    });
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

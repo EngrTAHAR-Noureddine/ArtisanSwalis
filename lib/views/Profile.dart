@@ -2,6 +2,7 @@ import 'package:artisanswalis/Styles/CustomColors.dart';
 import 'package:artisanswalis/Styles/CustomShapes.dart';
 import 'package:artisanswalis/Styles/CustomString.dart';
 import 'package:artisanswalis/Styles/CustomTypology.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -39,7 +40,7 @@ class _ProfileState extends State<Profile> {
                 child: CircleAvatar(
                     radius:70,
                     backgroundColor: Theme.of(context).dividerColor,
-                    backgroundImage: const AssetImage("assets/images/profile_pic.jpg"),
+                    backgroundImage: const AssetImage("assets/images/man.jpeg"),
                 ),
               ),
 
@@ -59,9 +60,12 @@ class _ProfileState extends State<Profile> {
                   margin: const EdgeInsets.all(16),
                   child: Text("(213)658091199" , style:textStyleInfo(context),) ),
               ElevatedButton.icon(
-                onPressed: ()=>(
-                    Navigator.popAndPushNamed(context, '/login')
-                ),
+                onPressed: () {
+                  late FirebaseMessaging messaging;
+                  messaging = FirebaseMessaging.instance;
+                  messaging.subscribeToTopic("5ySE7UusKLf8sDYHkuyX");
+                  Navigator.popAndPushNamed(context, '/login');
+                },
                 icon: Icon(Iconsax.profile_circle , color: oceanAccentColor,),
                 label: Text(strLogoutBtn,style:textStyleButton(context),),
                 style:  ButtonStyle(
