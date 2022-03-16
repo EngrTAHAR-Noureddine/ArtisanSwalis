@@ -45,11 +45,11 @@ class _ProductsState extends State<Products> {
           decoration: decorationBody(context),
           child: RefreshIndicator(
             onRefresh: ()async{
-              OrderProvider().fctListDelivery();
+              OrderProvider().fctListProduct();
             },
             color: Theme.of(context).primaryColor,
             child: StreamBuilder(
-                stream: OrderProvider().fctListDelivery(),
+                stream: OrderProvider().fctListProduct(),
                 builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
                   if(snapshot.connectionState == ConnectionState.done){
                     List<Product>? list = snapshot.data as List<Product>?;

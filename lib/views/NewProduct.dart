@@ -80,7 +80,7 @@ class _NewProductState extends State<NewProduct> {
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton.icon(
                           onPressed: (){
-                                  OrderProvider().addProduct(product);
+                                   OrderProvider().addProduct(product);
                                    Navigator.popAndPushNamed(context, '/home');
                                   },
                           icon: Icon(Iconsax.box_add , color: oceanAccentColor,),
