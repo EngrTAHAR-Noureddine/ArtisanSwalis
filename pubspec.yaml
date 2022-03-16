@@ -38,6 +38,8 @@ dependencies:
   path_provider: ^2.0.9
   iconsax: ^0.0.8
   firebase_core: ^1.13.1
+  cloud_firestore: ^3.1.10
+  firebase_auth: ^3.3.11
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +72,7 @@ flutter:
     - assets/images/profile_pic.jpg
     - assets/images/small_logo.png
     - assets/images/swalis_transparent.png
+    - assets/images/man.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
