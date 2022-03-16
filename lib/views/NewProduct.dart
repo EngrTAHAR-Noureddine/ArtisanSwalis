@@ -53,7 +53,7 @@ class _NewProductState extends State<NewProduct> {
                           child: CircleAvatar(
                             radius:70,
                             backgroundColor: Theme.of(context).dividerColor,
-                            backgroundImage: const AssetImage("assets/images/profile_pic.jpg"),
+                            backgroundImage: const AssetImage("assets/images/product.jpg"),
                           ),
                         ),
                       ),

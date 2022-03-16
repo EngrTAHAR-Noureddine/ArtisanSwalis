@@ -45,19 +45,19 @@ class _ProfileState extends State<Profile> {
 
               Container(
                   margin: const EdgeInsets.all(16),
-                  child: Text("Noureddine TAHAR" , style:textStyleName(context),) ),
+                  child: Text("Artisan 01" , style:textStyleName(context),) ),
               Container(
                   margin: const EdgeInsets.all(8),
-                  child: Text("hn_tahar@esi.dz" , style:textStyleEmail(context),) ),
+                  child: Text("root@root.com" , style:textStyleEmail(context),) ),
               Container(
                   margin: const EdgeInsets.all(8),
-                  child: Text("02-11-1999" , style:textStyleInfo(context),) ),
+                  child: Text("02-03-1989" , style:textStyleInfo(context),) ),
               Container(
                   margin: const EdgeInsets.all(8),
-                  child: Text("Relizane,Alger" , style:textStyleInfo(context),) ),
+                  child: Text("Oued Smar, El harrache,Alger" , style:textStyleInfo(context),) ),
               Container(
                   margin: const EdgeInsets.all(16),
-                  child: Text("0658091199" , style:textStyleInfo(context),) ),
+                  child: Text("(213)658091199" , style:textStyleInfo(context),) ),
               ElevatedButton.icon(
                 onPressed: ()=>(
                     Navigator.popAndPushNamed(context, '/login')

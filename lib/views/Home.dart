@@ -40,6 +40,7 @@ class _HomeState extends State<Home> {
       body: Center(
         child: Stack(children :  [
           _widgetOptions.elementAt(_selectedIndex),
+          //Bottom navigation Bar
           Positioned(
             bottom: 10,
             left: 10,

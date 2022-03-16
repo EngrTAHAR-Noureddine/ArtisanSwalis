@@ -1,5 +1,8 @@
+import 'package:artisanswalis/Providers/OrderProvider.dart';
 import 'package:artisanswalis/Styles/CustomColors.dart';
 import 'package:artisanswalis/Styles/CustomWidgets.dart';
+import 'package:artisanswalis/data/Order.dart';
+import 'package:artisanswalis/data/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -40,13 +43,43 @@ class _ProductsState extends State<Products> {
       body: Container(
           padding: const EdgeInsets.only(top: 10, bottom: 60),
           decoration: decorationBody(context),
-          child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: list.length,
-              padding: const EdgeInsets.all(10),
-              itemBuilder:(BuildContext context, int ind){
-                return itemStatusProducts(context);
-              }
+          child: RefreshIndicator(
+            onRefresh: ()async{
+              OrderProvider().fctListDelivery();
+            },
+            color: Theme.of(context).primaryColor,
+            child: StreamBuilder(
+                stream: OrderProvider().fctListDelivery(),
+                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                  if(snapshot.connectionState == ConnectionState.done){
+                    List<Product>? list = snapshot.data as List<Product>?;
+                    if(list!= null && list.isNotEmpty){
+                      return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: list.length,
+                          padding: const EdgeInsets.all(10),
+                          itemBuilder:(BuildContext context, int index){
+                            return itemStatusProducts(context , list[index]);
+                          }
+                      );
+                    }else{
+                      return const Center(
+                        child: Text("Empty"),
+                      );
+                    }
+
+                  }else if(snapshot.hasError){
+                    return const Center(
+                      child: Text("Problem of connection"),
+                    );
+                  }else{
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    );
+                  }
+                }),
           )
       ),
     );
