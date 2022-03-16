@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:artisanswalis/data/Product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 import '../Styles/CustomString.dart';
 import '../data/Order.dart';
@@ -99,6 +104,28 @@ class OrderProvider with ChangeNotifier{
       print("Done");
       notifyListeners();
     }).catchError((err)=> print("error") );
+  }
+
+
+  Future<DocumentReference> addProduct(Product product) async{
+
+    File imagefile = File("assets/images/product.jpg"); //convert Path to File
+    Uint8List imagebytes = await imagefile.readAsBytes(); //convert to bytes
+    String base64string = base64.encode(imagebytes);
+
+    return FirebaseFirestore.instance
+        .collection('Product')
+        .add(<String, dynamic>{
+      'description': product.description,
+      'idArtisan': "5ySE7UusKLf8sDYHkuyX",
+      'idProduct':const Uuid().v4(),
+      'ingredients': product.ingredients,
+      'name': product.name,
+      'picture':base64string,
+      'price': product.price ,
+      'status': product.status,
+
+    });
   }
 
 

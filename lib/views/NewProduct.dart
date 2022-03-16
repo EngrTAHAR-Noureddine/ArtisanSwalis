@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:artisanswalis/Providers/OrderProvider.dart';
 import 'package:artisanswalis/Styles/CustomColors.dart';
 import 'package:artisanswalis/Styles/CustomShapes.dart';
 import 'package:artisanswalis/Styles/CustomString.dart';
 import 'package:artisanswalis/Styles/CustomTypology.dart';
+import 'package:artisanswalis/data/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -15,6 +21,13 @@ class NewProduct extends StatefulWidget {
 }
 
 class _NewProductState extends State<NewProduct> {
+
+
+
+  Product product = Product(idArtisan: "5ySE7UusKLf8sDYHkuyX",
+                        description: "a",idProduct: "a",ingredients: "a",
+                        name: "",picture: "a",price: 0,status: "In progress");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,18 +70,19 @@ class _NewProductState extends State<NewProduct> {
                           ),
                         ),
                       ),
-                      inputFieldSign(context ,strNameProductHint),
-                      inputFieldSign(context ,strPriceHint),
+                      inputFieldProduct(context ,strNameProductHint,product, 0),
+                      inputFieldProduct(context ,strPriceHint,product ,1),
 
-                      inputFieldSign(context ,strDescriptionHint),
-                      inputFieldSign(context ,strIngredientsHint),
+                      inputFieldProduct(context ,strDescriptionHint,product ,2),
+                      inputFieldProduct(context ,strIngredientsHint,product ,3),
 
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton.icon(
-                          onPressed: ()=>(
-                              Navigator.popAndPushNamed(context, '/home')
-                          ),
+                          onPressed: (){
+                                  OrderProvider().addProduct(product);
+                                   Navigator.popAndPushNamed(context, '/home');
+                                  },
                           icon: Icon(Iconsax.box_add , color: oceanAccentColor,),
                           label: Text(strAddProductBtn,style:textStyleButton(context),),
                           style:  ButtonStyle(

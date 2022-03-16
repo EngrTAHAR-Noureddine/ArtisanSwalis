@@ -13,15 +13,15 @@ class Product{
     required this.status
   });
 
-  final String description;
-  final String idArtisan;
+   String description;
+   String idArtisan;
 
-  final String idProduct;
-  final String ingredients;
+   String idProduct;
+   String ingredients;
 
-  final String name;
-  final String picture;
+   String name;
+   String picture;
 
-  final int price;
-  final String status;
+   int price;
+   String status;
 }
