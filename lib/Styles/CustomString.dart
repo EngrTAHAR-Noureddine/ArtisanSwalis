@@ -20,7 +20,7 @@ String rejectBtn = "Reject";
 String doneBtn = "Done";
 String strLogoutBtn = "Logout";
 
-List<String> statusOfProduct = ["In progress" , "Accepted", "Rejected"];
+List<String> statusOfProduct = ["In progress" , "Accepted", "Rejected","Done"];
 
 String strNewProduct = "New Product";
 String strNameProductHint = "Name Of Product";
